@@ -1,0 +1,42 @@
+<div class="row mt-5">
+  <div class="col-4 col-auto">
+    <div class="card" style="width: 18rem;">
+      <img src="https://trecobox.com.br/wp-content/uploads/2019/09/ergo-proxy-anime-disponivel-na-netflix_trecobox.jpg" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">User Name</h5>
+        <p class="card-text"><%= current_user.email %></p>
+        <p class="card-text">I haven't felt much of anything since my guinea pig died.</p>
+        <a href="#" class="btn btn-primary">Perfil</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-8">
+    <h1>Pius</h1>
+
+    <% if user_signed_in? %>
+      <%= link_to 'New Piu', new_piu_path, class: "btn btn-primary btn-block" %>
+    <% end %>
+
+    <% @pius.order(id: :desc).each do |piu| %>
+      <div class="card mt-2">
+        <div class="card-body">
+          <h5 class="card-title"><%= piu.user.email %></h5>
+          <p class="card-text"><%= piu.content %></p>
+          <div class="row">
+            <div class="col">
+              <%= link_to 'Show', piu, class: "btn btn-light btn-sm " %>
+              <% if piu.user == current_user %>
+                <%= link_to 'Edit', edit_piu_path(piu), class: "btn btn-light btn-sm  " %>
+                <%= link_to 'Destroy', piu, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-light btn-sm " %>
+              <% end %>
+            </div>
+            <div class="col text-right">
+              <p class="card-text"><small class="text-muted"><%= piu.created_at.strftime("%d/%m/%Y - %H:%M") %></small></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

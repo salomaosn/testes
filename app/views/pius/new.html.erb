@@ -1,0 +1,18 @@
+<div class="row mt-5">
+  <div class="col-4 d-flex justify-content-center">
+    <div class="card" style="width: 18rem;">
+      <img src="https://trecobox.com.br/wp-content/uploads/2019/09/ergo-proxy-anime-disponivel-na-netflix_trecobox.jpg" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">User Name</h5>
+        <p class="card-text"><%= current_user.email %></p>
+        <p class="card-text">I haven't felt much of anything since my guinea pig died.</p>
+        <a href="#" class="btn btn-primary">Perfil</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-8">
+    <h1>New Piu</h1>
+
+    <%= render 'form', piu: @piu %>
+  </div>
+</div>

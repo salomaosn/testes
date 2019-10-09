@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Parties</h1>
+
+<table class="table table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th>Name</th>
+      <th>Begin</th>
+      <th>End</th>
+      <th>Hours</th>
+      <th class="text-center" colspan="3">Menu</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @parties.each do |party| %>
+      <tr>
+        <td><%= party.name %></td>
+        <td><%= party.begin %></td>
+        <td><%= party.end %></td>
+        <td><%= party.hours %></td>
+        <td><%= link_to 'Show', party, class: "btn btn-info" %></td>
+        <td><%= link_to 'Edit', edit_party_path(party), class: "btn btn-light" %></td>
+        <td><%= link_to 'Destroy', party, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Party', new_party_path, class: "btn btn-primary" %>

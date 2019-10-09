@@ -1,0 +1,17 @@
+<% if user_signed_in? %>
+  <div class="jumbotron mt-5">
+    <h1 class="display-4">Olá <%= current_user.email %></h1>
+    <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+    <hr class="my-4">
+    <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+    <%= link_to "Cadastre-se", new_user_registration_path, class: "btn btn-light btn-lg" %>
+  </div>
+<% else %>
+  <div class="jumbotron mt-5">
+    <h1 class="display-4">Bem-vindo ao ClassGeek</h1>
+    <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+    <hr class="my-4">
+    <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+    <%= link_to "Cadastre-se", new_user_registration_path, class: "btn btn-light btn-lg" %>
+  </div>
+<% end %>
