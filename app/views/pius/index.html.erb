@@ -1,12 +1,14 @@
 <div class="row mt-5">
-  <div class="col-4 col-auto">
+  <div class="col-lg-4 col-sm-12 col-auto">
     <div class="card" style="width: 18rem;">
-      <img src="https://trecobox.com.br/wp-content/uploads/2019/09/ergo-proxy-anime-disponivel-na-netflix_trecobox.jpg" class="card-img-top" alt="...">
+      <% url = Gravatar.new(current_user.email).image_url %>
+      <%= image_tag url, class: "card-img-top" %>
       <div class="card-body">
-        <h5 class="card-title">User Name</h5>
-        <p class="card-text"><%= current_user.email %></p>
+        <h5 class="card-title"><%= current_user.name %></h5>
+        <p class="card-subtitle text-muted">@<%= current_user.username %></p>
+        <p class="card-subtitle text-muted mb-4"><%= current_user.email %></p>
         <p class="card-text">I haven't felt much of anything since my guinea pig died.</p>
-        <a href="#" class="btn btn-primary">Perfil</a>
+        <%= link_to "Editar perfil", edit_user_registration_path, class: "btn btn-primary" %>
       </div>
     </div>
   </div>
@@ -21,8 +23,17 @@
     <% @pius.order(id: :desc).each do |piu| %>
       <div class="card mt-2">
         <div class="card-body">
-          <h5 class="card-title"><%= piu.user.email %></h5>
-          <p class="card-text"><%= piu.content %></p>
+          <div class="row ml-1">
+            <% perfil = Gravatar.new(piu.user.email).image_url %>
+            <%= image_tag perfil, class: "rounded-circle pius-perfil-img" %>
+            <h5 class="card-title pt-2 ml-3">
+              <%= piu.user.name %><small> - @<%= piu.user.username %></small>
+            </h5>
+          </div>
+          <p class="card-text mt-2"><%= piu.content %></p>
+          <% if piu.photo.file? %>
+            <%= image_tag piu.photo.url, class: "rounded-lg mb-3 img-size-limit" %>
+          <% end %>
           <div class="row">
             <div class="col">
               <%= link_to 'Show', piu, class: "btn btn-light btn-sm " %>

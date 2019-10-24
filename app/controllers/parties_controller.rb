@@ -57,7 +57,11 @@ class PartiesController < ApplicationController
   # DELETE /parties/1
   # DELETE /parties/1.json
   def destroy
-    @party.destroy
+    @party = Party.find(params[:id])
+    if @party.present?
+      @party.destroy
+    end
+
     respond_to do |format|
       format.html { redirect_to parties_url, notice: 'Party was successfully destroyed.' }
       format.json { head :no_content }
@@ -72,6 +76,6 @@ class PartiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def party_params
-      params.require(:party).permit(:name, :begin, :end, :hours)
+      params.require(:party).permit(:name, :begin, :end, :hours, :image)
     end
 end

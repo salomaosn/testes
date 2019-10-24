@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_09_114638) do
+ActiveRecord::Schema.define(version: 2019_10_24_205212) do
 
   create_table "parties", force: :cascade do |t|
     t.string "name"
@@ -19,6 +19,17 @@ ActiveRecord::Schema.define(version: 2019_10_09_114638) do
     t.float "hours"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "image_file_name"
+    t.string "image_content_type"
+    t.integer "image_file_size"
+    t.datetime "image_updated_at"
+  end
+
+  create_table "parties_users", id: false, force: :cascade do |t|
+    t.integer "party_id", null: false
+    t.integer "user_id", null: false
+    t.index ["party_id", "user_id"], name: "index_parties_users_on_party_id_and_user_id"
+    t.index ["user_id", "party_id"], name: "index_parties_users_on_user_id_and_party_id"
   end
 
   create_table "pius", force: :cascade do |t|
@@ -26,6 +37,10 @@ ActiveRecord::Schema.define(version: 2019_10_09_114638) do
     t.text "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "photo_file_name"
+    t.string "photo_content_type"
+    t.integer "photo_file_size"
+    t.datetime "photo_updated_at"
     t.index ["user_id"], name: "index_pius_on_user_id"
   end
 

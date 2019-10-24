@@ -14,6 +14,10 @@
   <div class="field form-group">
     <%= form.text_area :content, class: "form-control" %>
   </div>
+  <div class="field form-group">
+    <%= form.label :photo, "Adicionar imagem" %>
+    <%= form.file_field :photo, class: "form-control-file" %>
+  </div>
 
   <div class="actions mb-3">
     <%= form.submit "Enviar", class: "btn btn-primary" %>

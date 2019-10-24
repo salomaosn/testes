@@ -1,5 +1,6 @@
 Rails.application.configure do
   config.hosts << "3000-d4d28fc4-9726-46ac-b24d-22305dd9da47.ws-us1.gitpod.io"
+  Paperclip.options[:command_path] = '/usr/bin/'
   # config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   # Settings specified here will take precedence over those in config/application.rb.
 
