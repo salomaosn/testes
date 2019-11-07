@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  health: 1
+  mana: 1
+  gold: 1
+  exp: 1
+  level: 1
+
+two:
+  user: two
+  health: 1
+  mana: 1
+  gold: 1
+  exp: 1
+  level: 1

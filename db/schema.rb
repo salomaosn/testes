@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_24_205212) do
+ActiveRecord::Schema.define(version: 2019_10_26_194625) do
 
   create_table "parties", force: :cascade do |t|
     t.string "name"
@@ -28,8 +28,7 @@ ActiveRecord::Schema.define(version: 2019_10_24_205212) do
   create_table "parties_users", id: false, force: :cascade do |t|
     t.integer "party_id", null: false
     t.integer "user_id", null: false
-    t.index ["party_id", "user_id"], name: "index_parties_users_on_party_id_and_user_id"
-    t.index ["user_id", "party_id"], name: "index_parties_users_on_user_id_and_party_id"
+    t.index ["party_id", "user_id"], name: "index_parties_users_on_party_id_and_user_id", unique: true
   end
 
   create_table "pius", force: :cascade do |t|
@@ -42,6 +41,18 @@ ActiveRecord::Schema.define(version: 2019_10_24_205212) do
     t.integer "photo_file_size"
     t.datetime "photo_updated_at"
     t.index ["user_id"], name: "index_pius_on_user_id"
+  end
+
+  create_table "user_attributes", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "health"
+    t.integer "mana"
+    t.integer "gold"
+    t.integer "experience"
+    t.integer "level"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_user_attributes_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -60,4 +71,5 @@ ActiveRecord::Schema.define(version: 2019_10_24_205212) do
   end
 
   add_foreign_key "pius", "users"
+  add_foreign_key "user_attributes", "users"
 end

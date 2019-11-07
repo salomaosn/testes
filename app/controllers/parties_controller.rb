@@ -2,6 +2,36 @@ class PartiesController < ApplicationController
   # before_action :set_party, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
 
+  def add_attributes
+
+  end
+
+  def add_student
+    @party = Party.find(params[:party_id])
+    student = User.find_by(email: params[:email])
+
+    begin
+      @party.users << student
+      @party.save
+
+      if student.user_attribute.nil?
+        student.user_attribute = UserAttribute.new do |user_attribute|
+          user_attribute.level = 1
+          user_attribute.health = 100
+          user_attribute.mana = 50
+          user_attribute.gold = 0
+          user_attribute.experience = 0
+        end
+      end
+
+      message = "Temos um novo aluno em nossa party"
+    rescue Exception => e
+      message = "Erro: " + e.message
+    end
+
+    redirect_back fallback_location: root_path, alert: message
+  end
+
   # GET /parties
   # GET /parties.json
   def index

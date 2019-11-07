@@ -12,7 +12,30 @@
     </div>
   </div>
   <div class="col-8">
-    ALUNOS
+    <%= form_tag add_student_parties_path(@party), :method => :post do %>
+      <%= email_field_tag :email %>
+      <%= hidden_field_tag :party_id, @party.id %>
+      <%= submit_tag "Adicionar" %>
+    <% end %>
+    <div class="card mt-3">
+      <div class="card-body">
+        <!-- ALUNOS -->
+        <% @party.users.each do |student| %>
+          <div class="card mb-3">
+            <div class="card-body">
+              <%= student.name %><br>
+              <%= student.username %><br>
+              <%= student.email %>
+              <%= student.user_attribute.level %>
+              <%= student.user_attribute.health %>
+              <%= student.user_attribute.mana %>
+              <%= student.user_attribute.gold %>
+              <%= student.user_attribute.experience %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>
 <br><br>
